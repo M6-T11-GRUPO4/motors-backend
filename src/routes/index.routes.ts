@@ -1,5 +1,9 @@
 import { Express } from "express";
 
-const appRoutes = (app: Express) => {};
+import vehicleRouter from "./vehicle.routes";
+
+const appRoutes = (app: Express) => {
+  app.use("/vehicles", vehicleRouter);
+};
 
 export default appRoutes;
