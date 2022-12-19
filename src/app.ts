@@ -14,7 +14,7 @@ app.use("/", (req: Request, res: Response) => {
   return res.send("Olá mundo");
 });
 
-const PORT = process.env.PORT || 4000;
+const PORT = 4000;
 
 app.use(errorMiddleware);
 
