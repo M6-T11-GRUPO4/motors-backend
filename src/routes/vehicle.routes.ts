@@ -12,13 +12,10 @@ const vehicleRouter = Router();
 vehicleRouter.post("", createVehicleController);
 
 vehicleRouter.get("", listAllVehiclesController);
-
 vehicleRouter.get("/:id", listVehicleByIdController);
+vehicleRouter.get("/:id/images", listImagesByIdVehicleController);
 
 vehicleRouter.patch("/:id", updateVehicleController);
-
 vehicleRouter.patch("/:id/delete", deleteVehicleController);
-
-vehicleRouter.get("/:id/images", listImagesByIdVehicleController);
 
 export default vehicleRouter;
