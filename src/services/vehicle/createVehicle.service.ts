@@ -1,3 +1,4 @@
+import { AppError } from "../../errors/appError";
 import { IVehicleRequest } from "../../interfaces";
 import { prisma } from "../../prismaClient";
 
@@ -12,6 +13,14 @@ const createVehicleService = async ({
   user_mokado,
   image,
 }: IVehicleRequest) => {
+  if (type.toLowerCase().includes("carro")) {
+    null;
+  } else if (type.toLowerCase().includes("moto")) {
+    null;
+  } else {
+    throw new AppError(400, "O 'Type' aceita apenas 'Carro' ou 'Moto'");
+  }
+
   const vehicle = await prisma.vehicle.create({
     data: {
       name,

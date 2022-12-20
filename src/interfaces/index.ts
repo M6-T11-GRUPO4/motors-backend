@@ -20,9 +20,9 @@ export interface IVehicleRequest {
   price: number;
   year: number;
   km: number;
-  type: string;
-  user_mokado: string;
-  is_active: boolean;
+  type: "Carro" | "Moto";
+  user_mokado?: string;
+  is_active?: boolean;
   image?: string[];
 }
 
@@ -35,7 +35,7 @@ export interface IVehiclePatchRequest {
   km?: number;
   type?: string;
   user_mokado?: string;
-  is_active: boolean
+  is_active: boolean;
 }
 
 export interface IImage {
