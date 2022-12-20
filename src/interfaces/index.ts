@@ -1,13 +1,17 @@
 export interface IVehicle {
-  id: String;
-  name: String;
-  description: String;
-  price: Number;
-  year: Number;
-  km: Number;
-  type: String;
-  user_mokado: String;
-  is_active: Boolean;
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  year: number;
+  km: number;
+  type: string;
+  user_mokado: string;
+  is_active: boolean;
+}
+
+export interface IVehicleId {
+  id: string;
 }
 
 export interface IVehicleRequest {
@@ -19,7 +23,19 @@ export interface IVehicleRequest {
   type: string;
   user_mokado: string;
   is_active: boolean;
-  image?: string[]
+  image?: string[];
+}
+
+export interface IVehiclePatchRequest {
+  id: string;
+  name?: string;
+  description?: string;
+  price?: number;
+  year?: number;
+  km?: number;
+  type?: string;
+  user_mokado?: string;
+  is_active: boolean
 }
 
 export interface IImage {
