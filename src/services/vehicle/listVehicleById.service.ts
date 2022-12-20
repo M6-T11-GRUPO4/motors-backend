@@ -1,3 +1,4 @@
+import { AppError } from "../../errors/appError";
 import { IVehicleId, IVehicleRequest } from "../../interfaces";
 import { prisma } from "../../prismaClient";
 
@@ -15,6 +16,10 @@ const listVehicleByIdService = async ({id}: IVehicleId) => {
       },
     },
   });
+
+  if(returnVehicle === null){
+    throw new AppError(400, "Veículo não encontrado")
+  }
 
   return returnVehicle;
 };

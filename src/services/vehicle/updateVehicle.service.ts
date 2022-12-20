@@ -1,5 +1,5 @@
+import { AppError } from "../../errors/appError";
 import { prisma } from "../../prismaClient";
-import { IVehiclePatchRequest } from "../../interfaces";
 
 const updateVehicleService = async (
   id: string,
@@ -12,6 +12,21 @@ const updateVehicleService = async (
   year?: number,
   is_active?: boolean
 ) => {
+
+  if (type?.toLowerCase().includes("carro")) {
+    null;
+  } else if (type?.toLowerCase().includes("moto")) {
+    null;
+  } else {
+    throw new AppError(400, "O 'Type' aceita apenas 'Carro' ou 'Moto'");
+  }
+
+  const vehicleExists = await prisma.vehicle.findUnique({where:{id:id}})
+
+  if(!vehicleExists){
+    throw new AppError(400, "Veículo não encontrado")
+  }
+
   const updateVehicle = await prisma.vehicle.update({
     where: {
       id: id,
@@ -28,6 +43,7 @@ const updateVehicleService = async (
     },
   });
 
+  
   return updateVehicle;
 };
 
