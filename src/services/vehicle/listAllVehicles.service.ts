@@ -11,7 +11,7 @@ const listAllVehiclesService = async () => {
     },
   });
 
-  return returnVehicle;
+  return returnVehicle.reverse();
 };
 
 export default listAllVehiclesService;
