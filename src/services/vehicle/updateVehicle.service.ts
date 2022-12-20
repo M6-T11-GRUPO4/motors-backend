@@ -12,19 +12,20 @@ const updateVehicleService = async (
   year?: number,
   is_active?: boolean
 ) => {
-
-  if (type?.toLowerCase().includes("carro")) {
-    null;
-  } else if (type?.toLowerCase().includes("moto")) {
-    null;
-  } else {
-    throw new AppError(400, "O 'Type' aceita apenas 'Carro' ou 'Moto'");
+  if (type) {
+    if (type?.toLowerCase().includes("carro")) {
+      null;
+    } else if (type?.toLowerCase().includes("moto")) {
+      null;
+    } else {
+      throw new AppError(400, "O 'Type' aceita apenas 'Carro' ou 'Moto'");
+    }
   }
 
-  const vehicleExists = await prisma.vehicle.findUnique({where:{id:id}})
+  const vehicleExists = await prisma.vehicle.findUnique({ where: { id: id } });
 
-  if(!vehicleExists){
-    throw new AppError(400, "Veículo não encontrado")
+  if (!vehicleExists) {
+    throw new AppError(400, "Veículo não encontrado");
   }
 
   const updateVehicle = await prisma.vehicle.update({
@@ -43,7 +44,6 @@ const updateVehicleService = async (
     },
   });
 
-  
   return updateVehicle;
 };
 
