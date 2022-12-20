@@ -16,6 +16,7 @@ vehicleRouter.get("/:id", listVehicleByIdController);
 vehicleRouter.get("/:id/images", listImagesByIdVehicleController);
 
 vehicleRouter.patch("/:id", updateVehicleController);
-vehicleRouter.patch("/:id/delete", deleteVehicleController);
+
+vehicleRouter.delete("/:id/delete", deleteVehicleController);
 
 export default vehicleRouter;
