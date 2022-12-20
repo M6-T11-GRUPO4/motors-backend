@@ -20,12 +20,12 @@ model Vehicle {
   type        String
   is_active   Boolean @default(true)
   user_mokado String?
-  image       Image[] 
+  image       Image[]
 }
 
 model Image {
   id        String  @id @default(uuid())
   url       String
   vehicleId String
-  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 }
