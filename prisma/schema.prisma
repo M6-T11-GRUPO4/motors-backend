@@ -13,14 +13,14 @@ datasource db {
 model Vehicle {
   id          String  @id @default(uuid())
   name        String
-  description String 
+  description String
   price       Decimal @db.Money
   year        Int
   km          Int
-  type        String  @db.VarChar(5)
+  type        String
   is_active   Boolean @default(true)
   user_mokado String?
-  image       Image[]
+  image       Image[] 
 }
 
 model Image {
