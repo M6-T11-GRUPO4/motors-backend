@@ -1,4 +1,6 @@
 import { Router } from "express";
+import yupValidateMiddleware from "../middlewares/yupValidate.middleware";
+import postVehicleSchema from "../schemas/postVehicle.schema";
 
 import createVehicleController from "../controllers/vehicle/createVehicle.controller";
 import deleteVehicleController from "../controllers/vehicle/deleteVehicle.controller";
@@ -9,7 +11,7 @@ import updateVehicleController from "../controllers/vehicle/updateVehicle.contro
 
 const vehicleRouter = Router();
 
-vehicleRouter.post("", createVehicleController);
+vehicleRouter.post("", yupValidateMiddleware(postVehicleSchema), createVehicleController);
 
 vehicleRouter.get("", listAllVehiclesController);
 vehicleRouter.get("/:id", listVehicleByIdController);
