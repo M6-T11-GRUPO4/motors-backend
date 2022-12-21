@@ -1,4 +1,6 @@
 import { Router } from "express";
+import yupValidateMiddleware from "../middlewares/yupValidate.middleware";
+import postImageSchema from "../schemas/postImage.schema";
 
 import createImageController from "../controllers/image/createImage.controller";
 import deleteImageController from "../controllers/image/deleteImage.controller";
@@ -7,7 +9,11 @@ import listImageByIdController from "../controllers/image/listImageById.controll
 
 const imageRouter = Router();
 
-imageRouter.post("", createImageController);
+imageRouter.post(
+  "",
+  yupValidateMiddleware(postImageSchema),
+  createImageController
+);
 
 imageRouter.get("", listAllImagesController);
 imageRouter.get("/:id", listImageByIdController);
