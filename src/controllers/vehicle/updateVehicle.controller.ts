@@ -12,7 +12,7 @@ const updateVehicleController = async (req: Request, res: Response) => {
     type,
     user_mokado,
     year,
-    is_active
+    is_active,
   }: IVehiclePatchRequest = req.body;
 
   const updateVehicle = await updateVehicleService(

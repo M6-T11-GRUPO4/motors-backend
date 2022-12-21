@@ -12,7 +12,11 @@ import deleteVehicleController from "../controllers/vehicle/deleteVehicle.contro
 
 const vehicleRouter = Router();
 
-vehicleRouter.post("", yupValidateMiddleware(postVehicleSchema), createVehicleController);
+vehicleRouter.post(
+  "",
+  yupValidateMiddleware(postVehicleSchema),
+  createVehicleController
+);
 
 vehicleRouter.get("", listAllVehiclesController);
 vehicleRouter.get("/:id", listVehicleByIdController);
@@ -21,6 +25,6 @@ vehicleRouter.get("/:id/images", listImagesByIdVehicleController);
 vehicleRouter.patch("/:id", updateVehicleController);
 
 vehicleRouter.delete("/:id/deactivate", softDeleteVehicleController);
-vehicleRouter.delete('/:id/delete', deleteVehicleController)
+vehicleRouter.delete("/:id/delete", deleteVehicleController);
 
 export default vehicleRouter;

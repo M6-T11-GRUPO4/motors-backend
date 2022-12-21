@@ -6,7 +6,7 @@ const softDeleteVehicleController = async (req: Request, res: Response) => {
 
   const deleteVehicle = await softDeleteVehicleService(id);
 
-  return res.status(200).json({message: deleteVehicle});
+  return res.status(200).json({ message: deleteVehicle });
 };
 
 export default softDeleteVehicleController;
