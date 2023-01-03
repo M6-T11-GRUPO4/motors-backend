@@ -10,7 +10,6 @@ const updateVehicleController = async (req: Request, res: Response) => {
     name,
     price,
     type,
-    user_mokado,
     year,
     is_active,
   }: IVehiclePatchRequest = req.body;
@@ -22,7 +21,6 @@ const updateVehicleController = async (req: Request, res: Response) => {
     name,
     price,
     type,
-    user_mokado,
     year,
     is_active
   );
