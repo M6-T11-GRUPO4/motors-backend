@@ -22,6 +22,7 @@ model Vehicle {
   image       Image[]
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments    Comment[]
 }
 
 model Image {
@@ -43,4 +44,15 @@ model User {
   is_seller   Boolean   @default(false)
   is_active   Boolean   @default(true)
   vehicles    Vehicle[]
+  comments    Comment[]
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  comment   String
+  date      DateTime @db.Date @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vehicleId String
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 }
