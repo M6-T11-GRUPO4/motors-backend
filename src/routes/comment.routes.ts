@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import createCommentController from "../controllers/comment/createComment.controller";
+import deleteCommentController from "../controllers/comment/deleteComment.controller";
 import listAllCommentsController from "../controllers/comment/listAllComments.controller";
 import listCommentsByVehicleController from "../controllers/comment/listCommentsByVehicle.controller";
 import updateCommentController from "../controllers/comment/updateComment.controller";
@@ -24,5 +25,7 @@ commentRouter.patch(
   yupValidateMiddleware(patchCommentSchema),
   updateCommentController
 );
+
+commentRouter.delete("/:id", deleteCommentController);
 
 export default commentRouter;
