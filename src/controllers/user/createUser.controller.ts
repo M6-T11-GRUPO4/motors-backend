@@ -15,8 +15,17 @@ const createUserController = async (req: Request, res: Response) => {
     is_seller,
   }: IUserRequest = req.body;
 
-
-  const userCreated = await createUserService({name, email, password, birthdate, cpf, cellphone, description, is_active, is_seller});
+  const userCreated = await createUserService({
+    name,
+    email,
+    password,
+    birthdate,
+    cpf,
+    cellphone,
+    description,
+    is_active,
+    is_seller,
+  });
 
   return res.status(201).json(userCreated);
 };
