@@ -19,8 +19,9 @@ model Vehicle {
   km          Int
   type        String
   is_active   Boolean @default(true)
-  user_mokado String?
   image       Image[]
+  userId      String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Image {
@@ -28,4 +29,18 @@ model Image {
   url       String
   vehicleId String
   vehicle   Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id          String    @id @default(uuid())
+  name        String
+  email       String    @unique
+  password    String
+  cpf         String    @unique
+  birthdate   DateTime  @db.Date
+  cellphone   String
+  description String
+  is_seller   Boolean   @default(false)
+  is_active   Boolean   @default(true)
+  vehicles    Vehicle[]
 }

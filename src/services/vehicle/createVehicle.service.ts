@@ -10,8 +10,8 @@ const createVehicleService = async ({
   km,
   type,
   is_active,
-  user_mokado,
   image,
+  userId
 }: IVehicleRequest) => {
   if (type.toLowerCase().includes("carro")) {
     null;
@@ -30,7 +30,7 @@ const createVehicleService = async ({
       km,
       type,
       is_active,
-      user_mokado,
+      userId
     },
     include: {
       image: true,

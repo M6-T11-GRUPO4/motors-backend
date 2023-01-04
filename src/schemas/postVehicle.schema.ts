@@ -7,7 +7,6 @@ export const postVehicleSchema = yup.object().shape({
   year: yup.number().required("Ano do veículo é obrigatório"),
   km: yup.number().required("Kilometragem do veículo é obrigatória"),
   type: yup.string().required("Tipo de veículo é obrigatório"),
-  user_mokado: yup.string(),
   is_active: yup.boolean(),
   image: yup.array().of(yup.string()),
 });

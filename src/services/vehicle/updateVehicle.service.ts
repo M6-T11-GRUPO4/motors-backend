@@ -8,7 +8,6 @@ const updateVehicleService = async (
   name?: string,
   price?: number,
   type?: string,
-  user_mokado?: string,
   year?: number,
   is_active?: boolean
 ) => {
@@ -39,7 +38,6 @@ const updateVehicleService = async (
       km: km,
       year: year,
       type: type,
-      user_mokado: user_mokado,
       is_active: is_active,
     },
   });
