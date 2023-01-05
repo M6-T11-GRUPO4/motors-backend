@@ -6,6 +6,7 @@ import listUserByIdController from "../controllers/user/listUserById.controller"
 import listVehiclesByIdUserController from "../controllers/user/listVehiclesByIdUser.controller";
 import updateUserController from "../controllers/user/updateUser.controller";
 import deleteUserController from "../controllers/user/deleteUser.controller";
+import userLoginController from "../controllers/login/userLogin.controller";
 
 const userRouter = Router();
 
@@ -14,6 +15,8 @@ userRouter.post(
   verifyEmailAndCpfAvailabilityMiddleware,
   createUserController
 );
+
+userRouter.post("/login", userLoginController);
 
 userRouter.get("/:id", listUserByIdController);
 
