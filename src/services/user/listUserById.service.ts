@@ -23,7 +23,26 @@ const listUserByIdService = async (id: string) => {
     throw new AppError(404, "Usuário não encontrado");
   }
 
-  return user;
+  const address = await prisma.address.findUnique({
+    where: {
+      userId: id,
+    },
+    select: {
+      cep: true,
+      city: true,
+      number: true,
+      state: true,
+      street: true,
+      complement: true,
+    },
+  });
+
+  const returnedUser = {
+    ...user,
+    address,
+  };
+
+  return returnedUser;
 };
 
 export default listUserByIdService;
