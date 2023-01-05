@@ -51,6 +51,8 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
+  passwordResetToken?: string;
+  passwordResetExpires?: string;
   cpf: string;
   birthdate: string;
   cellphone: string;
@@ -68,6 +70,8 @@ export interface IUserRequest {
   name: string;
   email: string;
   password: string;
+  passwordResetToken?: string;
+  passwordResetExpires?: string;
   cpf: string;
   birthdate: string;
   cellphone: string;
@@ -85,9 +89,16 @@ export interface ResponseLogin {
   body: {
     token: string;
   };
+}
 
 export interface ICommentRequest {
   comment: string;
   vehicleId: string;
   userId: string;
+}
+
+export interface IEmailRequest {
+  to: string
+  subject: string
+  text: string
 }
