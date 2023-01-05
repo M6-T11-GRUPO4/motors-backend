@@ -7,6 +7,7 @@ import listVehiclesByIdUserController from "../controllers/user/listVehiclesById
 import updateUserController from "../controllers/user/updateUser.controller";
 import deleteUserController from "../controllers/user/deleteUser.controller";
 import userLoginController from "../controllers/login/userLogin.controller";
+import forgotPasswordController from "../controllers/user/forgotPassword.controller";
 
 const userRouter = Router();
 
@@ -17,6 +18,8 @@ userRouter.post(
 );
 
 userRouter.post("/login", userLoginController);
+
+userRouter.post('/login/forgot-password', forgotPasswordController)
 
 userRouter.get("/:id", listUserByIdController);
 
