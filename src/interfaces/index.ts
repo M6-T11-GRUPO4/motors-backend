@@ -85,4 +85,9 @@ export interface ResponseLogin {
   body: {
     token: string;
   };
+
+export interface ICommentRequest {
+  comment: string;
+  vehicleId: string;
+  userId: string;
 }
