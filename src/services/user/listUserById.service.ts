@@ -16,6 +16,16 @@ const listUserByIdService = async (id: string) => {
       is_active: true,
       is_seller: true,
       vehicles: true,
+      address: {
+        select: {
+          cep: true,
+          city: true,
+          number: true,
+          state: true,
+          street: true,
+          complement: true,
+        },
+      },
     },
   });
 
@@ -23,26 +33,7 @@ const listUserByIdService = async (id: string) => {
     throw new AppError(404, "Usuário não encontrado");
   }
 
-  const address = await prisma.address.findUnique({
-    where: {
-      userId: id,
-    },
-    select: {
-      cep: true,
-      city: true,
-      number: true,
-      state: true,
-      street: true,
-      complement: true,
-    },
-  });
-
-  const returnedUser = {
-    ...user,
-    address,
-  };
-
-  return returnedUser;
+  return user;
 };
 
 export default listUserByIdService;
