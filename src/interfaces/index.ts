@@ -7,7 +7,7 @@ export interface IVehicle {
   km: number;
   type: string;
   is_active: boolean;
-  userId: string
+  userId: string;
 }
 
 export interface IVehicleId {
@@ -23,7 +23,7 @@ export interface IVehicleRequest {
   type: "Carro" | "Moto";
   is_active?: boolean;
   image?: string[];
-  userId: string
+  userId: string;
 }
 
 export interface IVehiclePatchRequest {
@@ -52,15 +52,13 @@ export interface IUser {
   email: string;
   password: string;
   cpf: string;
-  birthdate: string
+  birthdate: string;
   cellphone: string;
   description: string;
   is_seller: boolean;
   is_active: boolean;
-  vehicles: string[]
+  vehicles: string[];
 }
-
-
 
 export interface IUserId {
   id: string;
@@ -71,9 +69,20 @@ export interface IUserRequest {
   email: string;
   password: string;
   cpf: string;
-  birthdate: string
+  birthdate: string;
   cellphone: string;
   description: string;
   is_seller?: boolean;
   is_active?: boolean;
+}
+
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
+
+export interface ResponseLogin {
+  body: {
+    token: string;
+  };
 }
