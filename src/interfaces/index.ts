@@ -76,6 +76,16 @@ export interface IUserRequest {
   is_active?: boolean;
 }
 
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
+
+export interface ResponseLogin {
+  body: {
+    token: string;
+  };
+
 export interface ICommentRequest {
   comment: string;
   vehicleId: string;
