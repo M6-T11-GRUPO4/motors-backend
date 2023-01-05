@@ -64,7 +64,7 @@ export interface IUserId {
   id: string;
 }
 
-export interface IUserRequest {
+export interface IUserRequest extends IAddressRequest {
   name: string;
   email: string;
   password: string;
@@ -76,6 +76,15 @@ export interface IUserRequest {
   is_active?: boolean;
 }
 
+export interface IAddressRequest {
+  cep: string;
+  state: string;
+  city: string;
+  street: string;
+  number: string;
+  complement?: string;
+}
+
 export interface IUserLogin {
   email: string;
   password: string;
@@ -85,6 +94,7 @@ export interface ResponseLogin {
   body: {
     token: string;
   };
+}
 
 export interface ICommentRequest {
   comment: string;

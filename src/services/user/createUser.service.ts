@@ -1,6 +1,7 @@
+import { hash } from "bcrypt";
+
 import { prisma } from "../../prismaClient";
 import { IUserRequest } from "../../interfaces";
-import { hash } from "bcrypt";
 
 const createUserService = async ({
   name,
@@ -12,6 +13,12 @@ const createUserService = async ({
   description,
   is_active = true,
   is_seller = false,
+  cep,
+  city,
+  number,
+  state,
+  street,
+  complement,
 }: IUserRequest) => {
   const hashedPassword = await hash(password, 10);
 
@@ -40,7 +47,32 @@ const createUserService = async ({
     },
   });
 
-  return user;
+  const address = await prisma.address.create({
+    data: {
+      cep,
+      city,
+      number,
+      state,
+      street,
+      complement,
+      userId: user.id,
+    },
+    select: {
+      cep: true,
+      city: true,
+      number: true,
+      state: true,
+      street: true,
+      complement: true,
+    },
+  });
+
+  const returnedUser = {
+    ...user,
+    address,
+  };
+
+  return returnedUser;
 };
 
 export default createUserService;
