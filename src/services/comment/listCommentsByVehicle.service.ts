@@ -7,7 +7,7 @@ const listCommentsByVehicleService = async (vehicleId: string) => {
     },
   });
 
-  return comments;
+  return comments.reverse();
 };
 
 export default listCommentsByVehicleService;

@@ -47,16 +47,6 @@ const updateUserService = async (
         description: true,
         is_active: true,
         is_seller: true,
-        address: {
-          select: {
-            cep: true,
-            city: true,
-            number: true,
-            state: true,
-            street: true,
-            complement: true,
-          },
-        },
       },
     });
 

@@ -9,6 +9,10 @@ export const postVehicleSchema = yup.object().shape({
   type: yup.string().required("Tipo de veículo é obrigatório"),
   is_active: yup.boolean(),
   image: yup.array().of(yup.string()),
+  userId: yup
+    .string()
+    .uuid("Apenas IDs válidos são permitidos")
+    .required("ID do usuário é obrigatório"),
 });
 
 export default postVehicleSchema;

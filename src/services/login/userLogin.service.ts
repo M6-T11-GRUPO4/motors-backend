@@ -13,13 +13,13 @@ const userLoginService = async ({ email, password }: IUserLogin) => {
   });
 
   if (!userLogin) {
-    throw new AppError(400, "Email ou senha inválidos");
+    throw new AppError(401, "Email ou senha inválidos");
   }
 
   const comparePassword = bcrypt.compareSync(password, userLogin.password);
 
   if (!comparePassword) {
-    throw new AppError(403, "Email ou senha inválidos");
+    throw new AppError(401, "Email ou senha inválidos");
   }
 
   const token = jwt.sign(

@@ -32,4 +32,4 @@ const authTokenMiddleware = (
   );
 };
 
-export default authTokenMiddleware
+export default authTokenMiddleware;

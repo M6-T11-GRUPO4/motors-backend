@@ -11,14 +11,24 @@ const createVehicleService = async ({
   type,
   is_active,
   image,
-  userId
+  userId,
 }: IVehicleRequest) => {
   if (type.toLowerCase().includes("carro")) {
-    null;
+    type = "Carro";
   } else if (type.toLowerCase().includes("moto")) {
-    null;
+    type = "Moto";
   } else {
     throw new AppError(400, "O 'Type' aceita apenas 'Carro' ou 'Moto'");
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    throw new AppError(404, "Usuário não encontrado");
   }
 
   const vehicle = await prisma.vehicle.create({
@@ -30,7 +40,7 @@ const createVehicleService = async ({
       km,
       type,
       is_active,
-      userId
+      userId,
     },
     include: {
       image: true,

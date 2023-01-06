@@ -9,7 +9,7 @@ const createImageService = async (url: string, vehicleId: string) => {
   });
 
   if (!vehicle) {
-    throw new AppError(404, "Veículo não encontrado")
+    throw new AppError(404, "Veículo não encontrado");
   }
 
   const image = await prisma.image.create({

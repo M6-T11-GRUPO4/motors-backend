@@ -13,6 +13,8 @@ import resetPasswordController from "../controllers/user/resetPassword.controlle
 import postUserSchema from "../schemas/postUser.schema";
 import yupValidateMiddleware from "../middlewares/yupValidate.middleware";
 import patchUserSchema from "../schemas/patchUser.schema";
+import authTokenMiddleware from "../middlewares/authToken.middleware";
+import userIsHimselfMiddleware from "../middlewares/userIsHimself.middlware";
 
 
 const userRouter = Router();
@@ -23,23 +25,26 @@ userRouter.post(
   verifyEmailAndCpfAvailabilityMiddleware,
   createUserController
 );
-
 userRouter.post("/login", userLoginController);
 
 userRouter.post('/login/forgot-password', forgotPasswordController)
 
 userRouter.get("/:id", listUserByIdController);
+userRouter.get("/:id/vehicles", listVehiclesByIdUserController);
 
 userRouter.patch(
   "/:id",
+  authTokenMiddleware,
+  userIsHimselfMiddleware,
   yupValidateMiddleware(patchUserSchema),
   updateUserController
 );
 
-userRouter.patch('/login/reset-password', resetPasswordController)
-
-userRouter.delete("/:id", deleteUserController);
-
-userRouter.get("/:id/vehicles", listVehiclesByIdUserController);
+userRouter.delete(
+  "/:id",
+  authTokenMiddleware,
+  userIsHimselfMiddleware,
+  deleteUserController
+);
 
 export default userRouter;

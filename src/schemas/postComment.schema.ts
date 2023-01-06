@@ -9,10 +9,6 @@ const postCommentSchema = yup.object().shape({
     .string()
     .required("ID do veículo é obrigatório")
     .uuid("Apenas IDs válidos são permitidos"),
-  userId: yup
-    .string()
-    .required("ID do usuário é obrigatório")
-    .uuid("Apenas IDs válidos são permitidos"),
 });
 
 export default postCommentSchema;
