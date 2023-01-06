@@ -13,18 +13,12 @@ const updateVehicleService = async (
 ) => {
   if (type) {
     if (type?.toLowerCase().includes("carro")) {
-      null;
+      type = "Carro";
     } else if (type?.toLowerCase().includes("moto")) {
-      null;
+      type = "Moto";
     } else {
       throw new AppError(400, "O 'Type' aceita apenas 'Carro' ou 'Moto'");
     }
-  }
-
-  const vehicleExists = await prisma.vehicle.findUnique({ where: { id: id } });
-
-  if (!vehicleExists) {
-    throw new AppError(400, "Veículo não encontrado");
   }
 
   const updateVehicle = await prisma.vehicle.update({

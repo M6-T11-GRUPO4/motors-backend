@@ -11,6 +11,7 @@ import softDeleteVehicleController from "../controllers/vehicle/softDeleteVehicl
 import deleteVehicleController from "../controllers/vehicle/deleteVehicle.controller";
 import authTokenMiddleware from "../middlewares/authToken.middleware";
 import isSellerMiddleware from "../middlewares/isSeller.middleware";
+import isAdOwnerMiddleware from "../middlewares/isAdOwner.middleware";
 
 const vehicleRouter = Router();
 
@@ -26,7 +27,12 @@ vehicleRouter.get("", listAllVehiclesController);
 vehicleRouter.get("/:id", listVehicleByIdController);
 vehicleRouter.get("/:id/images", listImagesByIdVehicleController);
 
-vehicleRouter.patch("/:id", updateVehicleController);
+vehicleRouter.patch(
+  "/:id",
+  authTokenMiddleware,
+  isAdOwnerMiddleware,
+  updateVehicleController
+);
 
 vehicleRouter.delete("/:id/deactivate", softDeleteVehicleController);
 vehicleRouter.delete("/:id/delete", deleteVehicleController);
