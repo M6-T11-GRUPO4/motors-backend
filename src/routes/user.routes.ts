@@ -10,6 +10,8 @@ import userLoginController from "../controllers/login/userLogin.controller";
 import postUserSchema from "../schemas/postUser.schema";
 import yupValidateMiddleware from "../middlewares/yupValidate.middleware";
 import patchUserSchema from "../schemas/patchUser.schema";
+import authTokenMiddleware from "../middlewares/authToken.middleware";
+import userIsHimselfMiddleware from "../middlewares/userIsHimself.middlware";
 
 const userRouter = Router();
 
@@ -26,10 +28,17 @@ userRouter.get("/:id/vehicles", listVehiclesByIdUserController);
 
 userRouter.patch(
   "/:id",
+  authTokenMiddleware,
+  userIsHimselfMiddleware,
   yupValidateMiddleware(patchUserSchema),
   updateUserController
 );
 
-userRouter.delete("/:id", deleteUserController);
+userRouter.delete(
+  "/:id",
+  authTokenMiddleware,
+  userIsHimselfMiddleware,
+  deleteUserController
+);
 
 export default userRouter;
