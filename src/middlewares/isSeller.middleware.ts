@@ -14,8 +14,6 @@ const isSellerMiddleware = async (
     },
   });
 
-  console.log(user);
-
   if (!user) {
     throw new AppError(404, "Usuário não encontrado");
   }
