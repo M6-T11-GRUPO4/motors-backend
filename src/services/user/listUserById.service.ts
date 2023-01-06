@@ -16,16 +16,6 @@ const listUserByIdService = async (id: string) => {
       is_active: true,
       is_seller: true,
       vehicles: true,
-      address: {
-        select: {
-          cep: true,
-          city: true,
-          number: true,
-          state: true,
-          street: true,
-          complement: true,
-        },
-      },
     },
   });
 
