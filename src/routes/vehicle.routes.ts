@@ -1,7 +1,7 @@
 import { Router } from "express";
+
 import yupValidateMiddleware from "../middlewares/yupValidate.middleware";
 import postVehicleSchema from "../schemas/postVehicle.schema";
-
 import createVehicleController from "../controllers/vehicle/createVehicle.controller";
 import listAllVehiclesController from "../controllers/vehicle/listAllVehicles.controller";
 import listImagesByIdVehicleController from "../controllers/vehicle/listImagesByIdVehicle.controller";
@@ -9,12 +9,16 @@ import listVehicleByIdController from "../controllers/vehicle/listVehicleById.co
 import updateVehicleController from "../controllers/vehicle/updateVehicle.controller";
 import softDeleteVehicleController from "../controllers/vehicle/softDeleteVehicle.controller";
 import deleteVehicleController from "../controllers/vehicle/deleteVehicle.controller";
+import authTokenMiddleware from "../middlewares/authToken.middleware";
+import isSellerMiddleware from "../middlewares/isSeller.middleware";
 
 const vehicleRouter = Router();
 
 vehicleRouter.post(
   "",
+  authTokenMiddleware,
   yupValidateMiddleware(postVehicleSchema),
+  isSellerMiddleware,
   createVehicleController
 );
 
