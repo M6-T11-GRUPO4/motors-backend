@@ -1,12 +1,11 @@
 import { AppError } from "../../errors/appError";
-import { IVehicleId, IVehicleRequest } from "../../interfaces";
+import { IVehicleId } from "../../interfaces";
 import { prisma } from "../../prismaClient";
 
-const listVehicleByIdService = async ({id}: IVehicleId) => {
-
+const listVehicleByIdService = async ({ id }: IVehicleId) => {
   const returnVehicle = await prisma.vehicle.findUnique({
     where: {
-      id: id
+      id: id,
     },
     include: {
       image: {
@@ -17,8 +16,8 @@ const listVehicleByIdService = async ({id}: IVehicleId) => {
     },
   });
 
-  if(returnVehicle === null){
-    throw new AppError(400, "Veículo não encontrado")
+  if (!returnVehicle) {
+    throw new AppError(404, "Veículo não encontrado");
   }
 
   return returnVehicle;
