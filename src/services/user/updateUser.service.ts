@@ -17,7 +17,7 @@ const updateUserService = async (
   const userExists = await prisma.user.findUnique({ where: { id: id } });
 
   if (!userExists) {
-    throw new AppError(400, "usuário não encontrado");
+    throw new AppError(404, "usuário não encontrado");
   }
 
   if (password) {
@@ -47,6 +47,16 @@ const updateUserService = async (
         description: true,
         is_active: true,
         is_seller: true,
+        address: {
+          select: {
+            cep: true,
+            city: true,
+            number: true,
+            state: true,
+            street: true,
+            complement: true,
+          },
+        },
       },
     });
 
@@ -76,6 +86,16 @@ const updateUserService = async (
         description: true,
         is_active: true,
         is_seller: true,
+        address: {
+          select: {
+            cep: true,
+            city: true,
+            number: true,
+            state: true,
+            street: true,
+            complement: true,
+          },
+        },
       },
     });
 

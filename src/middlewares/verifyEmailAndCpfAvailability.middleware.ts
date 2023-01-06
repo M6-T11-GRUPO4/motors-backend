@@ -22,11 +22,11 @@ const verifyEmailAndCpfAvailabilityMiddleware = async (
   });
 
   if (emailAlreadyExists) {
-    throw new AppError(400, "Email já existe, faça o login.");
+    throw new AppError(403, "Email já existe, faça o login.");
   }
 
   if (cpfAlreadyExists) {
-    throw new AppError(400, "CPF já existe, faça o login.");
+    throw new AppError(403, "CPF já existe, faça o login.");
   }
 
   next();

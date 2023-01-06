@@ -12,8 +12,8 @@ const listVehiclesByIdUserService = async ({ id }: IUserId) => {
     },
   });
 
-  if (returnVehicles === null) {
-    throw new AppError(400, "Veículos não encontrados");
+  if (!returnVehicles) {
+    throw new AppError(404, "Usuário não encontrado");
   }
 
   return returnVehicles;

@@ -45,6 +45,19 @@ model User {
   is_active   Boolean   @default(true)
   vehicles    Vehicle[]
   comments    Comment[]
+  address     Address?
+}
+
+model Address {
+  id         String @id @default(uuid())
+  cep        String
+  state      String
+  city       String
+  street     String
+  number     String
+  complement String?
+  userId     String @unique
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Comment {
