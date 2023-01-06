@@ -10,7 +10,6 @@ const patchUserSchema = yup.object().shape({
     .string()
     .matches(/^[1-9]{2}(?:[2-8]|9[1-9])[0-9]{7}$/, "Telefone inválido"),
   description: yup.string(),
-  is_seller: yup.boolean(),
   is_active: yup.boolean(),
 });
 
