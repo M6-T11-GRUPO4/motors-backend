@@ -2,19 +2,17 @@ import { AppError } from "../../errors/appError";
 import { IVehicleRequest } from "../../interfaces";
 import { prisma } from "../../prismaClient";
 
-const createVehicleService = async (
-  {
-    name,
-    description,
-    price,
-    year,
-    km,
-    type,
-    is_active,
-    image,
-    userId,
-  }: IVehicleRequest
-) => {
+const createVehicleService = async ({
+  name,
+  description,
+  price,
+  year,
+  km,
+  type,
+  is_active,
+  image,
+  userId,
+}: IVehicleRequest) => {
   if (type.toLowerCase().includes("carro")) {
     type = "Carro";
   } else if (type.toLowerCase().includes("moto")) {

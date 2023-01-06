@@ -19,10 +19,10 @@ userRouter.post(
   verifyEmailAndCpfAvailabilityMiddleware,
   createUserController
 );
-
 userRouter.post("/login", userLoginController);
 
 userRouter.get("/:id", listUserByIdController);
+userRouter.get("/:id/vehicles", listVehiclesByIdUserController);
 
 userRouter.patch(
   "/:id",
@@ -31,7 +31,5 @@ userRouter.patch(
 );
 
 userRouter.delete("/:id", deleteUserController);
-
-userRouter.get("/:id/vehicles", listVehiclesByIdUserController);
 
 export default userRouter;
