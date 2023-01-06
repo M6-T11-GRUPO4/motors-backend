@@ -98,7 +98,13 @@ export interface ICommentRequest {
 }
 
 export interface IEmailRequest {
-  to: string
-  subject: string
-  text: string
+  to: string;
+  subject: string;
+  text: string;
+}
+
+export interface IResetPassword {
+  email: string;
+  token: string;
+  password: string;
 }
