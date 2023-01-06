@@ -19,7 +19,10 @@ const isCommentOwnerMiddleware = async (
   }
 
   if (comment.userId !== req.user.userId) {
-    throw new AppError(403, "Apenas dono do comentário pode editá-lo");
+    throw new AppError(
+      403,
+      "Apenas dono do comentário pode excluir/editar comentário"
+    );
   }
 
   next();

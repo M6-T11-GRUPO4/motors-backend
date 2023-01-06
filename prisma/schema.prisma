@@ -47,6 +47,8 @@ model User {
   is_active            Boolean   @default(true)
   vehicles             Vehicle[]
   comments             Comment[]
+  address              Address?
+}
   
 model Address {
   id         String @id @default(uuid())
