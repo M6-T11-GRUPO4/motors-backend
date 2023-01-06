@@ -7,11 +7,11 @@ import listAllVehiclesController from "../controllers/vehicle/listAllVehicles.co
 import listImagesByIdVehicleController from "../controllers/vehicle/listImagesByIdVehicle.controller";
 import listVehicleByIdController from "../controllers/vehicle/listVehicleById.controller";
 import updateVehicleController from "../controllers/vehicle/updateVehicle.controller";
-import softDeleteVehicleController from "../controllers/vehicle/softDeleteVehicle.controller";
 import deleteVehicleController from "../controllers/vehicle/deleteVehicle.controller";
 import authTokenMiddleware from "../middlewares/authToken.middleware";
 import isSellerMiddleware from "../middlewares/isSeller.middleware";
 import isAdOwnerMiddleware from "../middlewares/isAdOwner.middleware";
+import patchVehicleSchema from "../schemas/patchVehicle.schema";
 
 const vehicleRouter = Router();
 
@@ -31,10 +31,15 @@ vehicleRouter.patch(
   "/:id",
   authTokenMiddleware,
   isAdOwnerMiddleware,
+  yupValidateMiddleware(patchVehicleSchema),
   updateVehicleController
 );
 
-vehicleRouter.delete("/:id/deactivate", softDeleteVehicleController);
-vehicleRouter.delete("/:id/delete", deleteVehicleController);
+vehicleRouter.delete(
+  "/:id",
+  authTokenMiddleware,
+  isAdOwnerMiddleware,
+  deleteVehicleController
+);
 
 export default vehicleRouter;
