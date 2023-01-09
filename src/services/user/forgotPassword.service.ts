@@ -7,7 +7,7 @@ const forgotPasswordService = async (email: string) => {
   const user = await prisma.user.findUnique({ where: { email: email } });
 
   if (!user) {
-    throw new AppError(400, "Usuário não encontrado");
+    throw new AppError(404, "Usuário não encontrado");
   }
 
   const token = crypto.randomBytes(3).toString("hex").toLocaleUpperCase();

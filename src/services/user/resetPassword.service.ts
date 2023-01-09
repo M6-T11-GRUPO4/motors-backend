@@ -11,12 +11,12 @@ const resetPasswordService = async ({
   const user = await prisma.user.findUnique({ where: { email: email } });
 
   if (!user) {
-    throw new AppError(400, "Usuário não encontrado");
+    throw new AppError(404, "Usuário não encontrado");
   }
 
   if (token !== user.passwordResetToken) {
     throw new AppError(
-      400,
+      401,
       "Código de recuperação de senha é inválido, verifique seu e-mail"
     );
   }
@@ -25,13 +25,13 @@ const resetPasswordService = async ({
 
   if (!user.passwordResetExpires) {
     throw new AppError(
-      400,
+      403,
       "Faça a solicitação de recuperação de senha e verifique seu e-mail"
     );
   } else {
     if (now > user.passwordResetExpires) {
       throw new AppError(
-        400,
+        403,
         "Código de recuperação expirado, gere um novo código e verifique seu e-mail"
       );
     }
