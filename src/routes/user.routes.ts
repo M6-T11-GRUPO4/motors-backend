@@ -28,7 +28,7 @@ userRouter.post(
 userRouter.post("/login", userLoginController);
 
 userRouter.post('/login/forgot-password', forgotPasswordController)
-userRouter.patch('/login/reset-password', resetPasswordController)
+userRouter.post('/login/reset-password', resetPasswordController)
 
 userRouter.get("/:id", listUserByIdController);
 userRouter.get("/:id/vehicles", listVehiclesByIdUserController);
