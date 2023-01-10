@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Motors Shop</title>
+  </head>
+  <div style="text-align: center">
+    <img src="cid:NameShop.png" />
+  </div>
+  <p style="font-size: 20px; font-weight: 600; text-align: center">
+    Recuperação de senha
+  </p>
+  <p style="text-align: center">Olá {{name}}</p>
+  <p>
+    Você solicitou uma
+    <strong>recuperação de senha</strong>
+    recentemente em nosso site, para sua segurança, leia atentamente o passo a
+    passo a seguir para recuperar seu acesso:
+  </p>
+  <ol>
+    <li>
+      Entre nesse link para fazer a redefinição:
+      <a
+        href="http://localhost:3000/reset-password"
+        target="_blank"
+      >http://localhost:3000/reset-password</a>;
+    </li>
+    <li>
+      No campo "e-mail", digite o e-mail solicitado na recuperação:
+      {{email}};
+    </li>
+    <li>
+      Em "Código de recuperação", coloque esse código:
+      <strong>{{token}}</strong>
+    </li>
+    <li>
+      Digite sua nova senha, confirme-a no campo abaixo e clique em "Alterar
+      Senha"
+    </li>
+    <li>
+      Pronto! Agora você pode aproveitar novamente todos os nossos serviços
+      fazendo o login
+    </li>
+  </ol>
+  <p style="font-weight: 600;">
+    Atenção: o código de recuperação de senha é válido por 1 hora, caso não seja
+    feita a recuperação nesse tempo, será necessário fazer uma nova solicitação
+  </p>
+</html>
