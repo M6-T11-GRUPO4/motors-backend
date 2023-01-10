@@ -7,8 +7,8 @@ import "dotenv/config";
 
 const sendEmail = async (email: string) => {
   var transporter = createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
+    host: "smtp.gmail.com",
+    port: 587,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
