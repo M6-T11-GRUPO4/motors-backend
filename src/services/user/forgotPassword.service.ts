@@ -25,11 +25,7 @@ const forgotPasswordService = async (email: string) => {
     },
   });
 
-  await sendEmail({
-    subject: "Recuperação de senha - Motors Shop",
-    text: `Você esqueceu sua senha? Não se preocupe, utilize esse código de recuperação "${token}" e insira a nova senha`,
-    to: email,
-  });
+  await sendEmail(user.email)
 
   return "Email de recuperação enviado com sucesso";
 };
