@@ -8,6 +8,19 @@ const listAllVehiclesService = async () => {
           url: true,
         },
       },
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          description: true,
+          cpf: true,
+          birthdate: true,
+          cellphone: true,
+          is_active: true,
+          is_seller: true,
+        },
+      },
     },
   });
 
