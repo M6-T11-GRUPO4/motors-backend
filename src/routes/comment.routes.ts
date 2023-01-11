@@ -14,7 +14,7 @@ import postCommentSchema from "../schemas/postComment.schema";
 const commentRouter = Router();
 
 commentRouter.post(
-  "/",
+  "/:vehicleId",
   authTokenMiddleware,
   yupValidateMiddleware(postCommentSchema),
   createCommentController
