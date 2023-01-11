@@ -12,8 +12,9 @@ const createVehicleController = async (req: Request, res: Response) => {
     type,
     is_active,
     image,
-    userId,
   }: IVehicleRequest = req.body;
+
+  const { userId } = req.user;
 
   const newVehicle = await createVehicleService({
     name,
