@@ -4,7 +4,9 @@ import { ICommentRequest } from "../../interfaces";
 import createCommentService from "../../services/comment/createComment.service";
 
 const createCommentController = async (req: Request, res: Response) => {
-  const { comment, vehicleId }: ICommentRequest = req.body;
+  const { comment }: ICommentRequest = req.body;
+
+  const { vehicleId } = req.params;
 
   const { userId } = req.user;
 
