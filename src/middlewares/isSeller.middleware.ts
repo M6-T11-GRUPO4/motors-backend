@@ -10,7 +10,7 @@ const isSellerMiddleware = async (
 ) => {
   const user = await prisma.user.findUnique({
     where: {
-      id: req.body.userId,
+      id: req.user.userId,
     },
   });
 
@@ -19,10 +19,6 @@ const isSellerMiddleware = async (
   }
 
   if (!user.is_seller) {
-    throw new AppError(403, "Apenas anunciantes podem criar anúncios");
-  }
-
-  if (req.user.userId !== req.body.userId) {
     throw new AppError(403, "Apenas anunciantes podem criar anúncios");
   }
 
