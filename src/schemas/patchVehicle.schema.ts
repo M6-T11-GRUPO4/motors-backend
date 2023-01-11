@@ -9,7 +9,6 @@ export const patchVehicleSchema = yup.object().shape({
   type: yup.string(),
   is_active: yup.boolean(),
   image: yup.array().of(yup.string()),
-  userId: yup.string().uuid("Apenas IDs válidos são permitidos"),
 });
 
 export default patchVehicleSchema;

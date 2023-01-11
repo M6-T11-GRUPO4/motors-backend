@@ -35,6 +35,7 @@ export interface IVehiclePatchRequest {
   km?: number;
   type?: string;
   is_active: boolean;
+  image?: string[]
 }
 
 export interface IImage {

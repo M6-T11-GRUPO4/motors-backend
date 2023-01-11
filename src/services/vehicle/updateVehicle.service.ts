@@ -9,7 +9,8 @@ const updateVehicleService = async (
   price?: number,
   type?: string,
   year?: number,
-  is_active?: boolean
+  is_active?: boolean,
+  image?: string[]
 ) => {
   if (type) {
     if (type?.toLowerCase().includes("carro")) {
@@ -21,7 +22,7 @@ const updateVehicleService = async (
     }
   }
 
-  const updateVehicle = await prisma.vehicle.update({
+  await prisma.vehicle.update({
     where: {
       id: id,
     },
@@ -35,6 +36,32 @@ const updateVehicleService = async (
       is_active: is_active,
     },
   });
+
+  await prisma.image.deleteMany({
+    where: {
+      vehicleId: id,
+    },
+  });  
+
+  if (image?.length) {
+    for (let i = 0; i < image?.length; i++) {
+      await prisma.image.create({
+        data: {
+          url: image[i],
+          vehicleId: id,
+        },
+      });
+    }    
+  }
+
+  const updateVehicle = await prisma.vehicle.findUnique({
+    where: {
+      id: id
+    },
+    include: {
+      image: true
+    }
+  })
 
   return updateVehicle;
 };
