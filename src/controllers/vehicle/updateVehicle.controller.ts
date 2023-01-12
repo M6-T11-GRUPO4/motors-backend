@@ -10,9 +10,9 @@ const updateVehicleController = async (req: Request, res: Response) => {
     name,
     price,
     type,
-    user_mokado,
     year,
     is_active,
+    image
   }: IVehiclePatchRequest = req.body;
 
   const updateVehicle = await updateVehicleService(
@@ -22,9 +22,9 @@ const updateVehicleController = async (req: Request, res: Response) => {
     name,
     price,
     type,
-    user_mokado,
     year,
-    is_active
+    is_active,
+    image
   );
 
   return res.status(200).json(updateVehicle);

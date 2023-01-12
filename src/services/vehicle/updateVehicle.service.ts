@@ -8,27 +8,21 @@ const updateVehicleService = async (
   name?: string,
   price?: number,
   type?: string,
-  user_mokado?: string,
   year?: number,
-  is_active?: boolean
+  is_active?: boolean,
+  image?: string[]
 ) => {
   if (type) {
     if (type?.toLowerCase().includes("carro")) {
-      null;
+      type = "Carro";
     } else if (type?.toLowerCase().includes("moto")) {
-      null;
+      type = "Moto";
     } else {
       throw new AppError(400, "O 'Type' aceita apenas 'Carro' ou 'Moto'");
     }
   }
 
-  const vehicleExists = await prisma.vehicle.findUnique({ where: { id: id } });
-
-  if (!vehicleExists) {
-    throw new AppError(400, "Veículo não encontrado");
-  }
-
-  const updateVehicle = await prisma.vehicle.update({
+  await prisma.vehicle.update({
     where: {
       id: id,
     },
@@ -39,10 +33,35 @@ const updateVehicleService = async (
       km: km,
       year: year,
       type: type,
-      user_mokado: user_mokado,
       is_active: is_active,
     },
   });
+
+  await prisma.image.deleteMany({
+    where: {
+      vehicleId: id,
+    },
+  });  
+
+  if (image?.length) {
+    for (let i = 0; i < image?.length; i++) {
+      await prisma.image.create({
+        data: {
+          url: image[i],
+          vehicleId: id,
+        },
+      });
+    }    
+  }
+
+  const updateVehicle = await prisma.vehicle.findUnique({
+    where: {
+      id: id
+    },
+    include: {
+      image: true
+    }
+  })
 
   return updateVehicle;
 };

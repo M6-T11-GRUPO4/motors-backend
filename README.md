@@ -32,10 +32,10 @@
 
 Essa aplicação foi desenvolvida para o Projeto Final realizado nas sprints 4-8 do módulo 6 para a Kenzie Academy Brasil no intuito de revisar, treinar e validar os conhecimentos adquiridos ao longo do curso, que serão usados no mercado de trabalho.
 
-O objetivo dessa aplicação é servir como um backend para o projeto fullstack de uma "Olx de veículos".
+O objetivo dessa aplicação é servir como um backend para o projeto fullstack, chamado de Motors Shop, uma "Olx de veículos".
 
 **Frontend**
-- [Frontend Deploy](https://motors-doc-api.vercel.app/)
+- [Frontend Deploy](https://motors-shop-brunotiberio.vercel.app/)
 - [Frontend Repositório](https://github.com/M6-T11-GRUPO4/motors-frontend)
 
 **Backend**
@@ -50,6 +50,9 @@ Tecnologias usadas nesse projeto:
 - [Prisma](https://www.prisma.io/)
 - [Yup](https://www.npmjs.com/package/yup)
 - [EsLint](https://eslint.org/)
+- [Jsonwebtoken](https://jwt.io/)
+- [Nodemailer](https://nodemailer.com/about/)
+- [Nodemailer-express-handlebars](https://www.npmjs.com/package/nodemailer-express-handlebars)
 
 ## 1. Time de desenvolvimento
 
@@ -102,7 +105,7 @@ cp .env.example .env
 
 [ Voltar ao topo ](#sumário)
 
-**ATENÇÃO: Recomendamos fortemente o uso de PostgreSQL nesse sistema, visto que as Models estão configuradas para sistema supracitado. Caso queira usar outro sgbd, alterações devem ocorrer no arquivo "./prisma/schema.prisma", essas alterações podem ser encontradas aqui: https://www.prisma.io/dataguide/postgresql/introduction-to-data-types**
+**ATENÇÃO: Recomendamos fortemente o uso de PostgreSQL nesse sistema, visto que as Models estão configuradas para o sistema supracitado. Caso queira usar outro sgbd, alterações devem ocorrer no arquivo "./prisma/schema.prisma", essas alterações podem ser encontradas aqui: https://www.prisma.io/dataguide/postgresql/introduction-to-data-types**
 
 Atribua as credenciais do seu PostgreSQL ao link da variável de ambiente DATABASE_URL:
 
@@ -119,6 +122,12 @@ DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE_NAME"
 Caso queira configurar outro database, configure o "provider" em "./prisma/schema.prisma" colocando o nome do Sistema de Gerenciamento de Banco de Dados.
 Para dirimir as dúvidas do que se deve configurar para outros Banco de dados, siga essa documentação: http://l1nq.com/conectaroutro
 
+Outras variáveis:
+
+- SECRET_KEY=coloque_a_secret_key-da_aplicacao
+- EMAIL_USER=conta_de_email_usada_para_envio_de_mensagens
+- EMAIL_PASS=senha_de_email_usada_para_envio_de_mensagens
+
 
 ### 3.3. Execute as migrações para realizar a persistência de dados
 
@@ -127,6 +136,8 @@ Para dirimir as dúvidas do que se deve configurar para outros Banco de dados, s
 ```shell
 yarn prisma migrate dev
 ```
+
+OBS: caso o banco de dados não exista, automaticamente é gerado a database com o nome colocado no final da varíavel de ambiente do link
 
 ### 3.6. Rodando a API localmente
 
@@ -152,8 +163,8 @@ Aguarde o processamento e sua aplicação já estará disponível para uso em (c
 
 O consumo pode ser feito tanto pelo deploy do frontend (links logo abaixo), pelo Insonmia e pelo clone do repositório do frontend.
 
-- [Deploy](coloque o link do deploy do front aqui)
-- [Workspace do Insomnia](coloque o nome do workspace do insomnia aqui e o arquivo na raiz)
+- [Deploy](https://motors-shop-brunotiberio.vercel.app/)
+- [Workspace do Insomnia](motors-insonmia-versao-final.json)
 - [Repositório frontend](https://github.com/M6-T11-GRUPO4/motors-frontend)
 
 É possível acessar à documentação completa para poder utilizar a API.
@@ -166,7 +177,10 @@ Interfaces e Models desenvolvidas: (adicionar mais até o fim do projeto)
 
 - Vehicle (CRUD completo)
 - Image (CRUD completo)
-
+- User (CRUD completo)
+- Address (CRUD completo)
+- Comments (CRUD completo)
+  
 ---
 
 ## 5. Histórico de desenvolvimento
@@ -209,16 +223,19 @@ O Objetivo principal dessa aplicação é a validação dos conhecimentos do tim
 
 [ Voltar ao topo ](#sumário)
 
-Foram criados, no total, 2 models: (mudar de acordo com o projeto)
+Foram criados, no total, 6 models (1 extra):
 
 - Vehicle: Onde é feito o CRUD do anuncio que será o responsável listar e adicionar novos veículos ao front;
 - Image: Aqui está o CRUD das imagens que são adicionadas a cada Vehicle;
+- User: Onde é feito toda a parte de registro e gerenciamento de usuário;
+- Address: Local em que fica armazenado os dados de endereço de usuário;
+- Comments: Model usada para armazenamento de comentários dentro da aplicação
 
 #### 5.2.3. Middlewares e Schemas
 
 [ Voltar ao topo ](#sumário)
 
-Nessa arquitetura, há duas pastas importantes: (adicione mais de acordo com a necessidade ate o fim)
+Nessa arquitetura, há duas pastas importantes:
 
 - Middlewares: Onde ficam armazenados os arquivos funcionam como um serviço intermediário ao services e controllers. São utilizados quando é necessário fazer algum tipo de verificação constante no código, evitando o retrabalho:
   - error.middleware: Usado para repassar ao cliente as mensagens de erro;

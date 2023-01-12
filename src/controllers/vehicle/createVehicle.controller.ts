@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IImageRequest, IVehicle, IVehicleRequest } from "../../interfaces";
+import { IVehicleRequest } from "../../interfaces";
 import createVehicleService from "../../services/vehicle/createVehicle.service";
 
 const createVehicleController = async (req: Request, res: Response) => {
@@ -11,9 +11,10 @@ const createVehicleController = async (req: Request, res: Response) => {
     km,
     type,
     is_active,
-    user_mokado,
     image,
   }: IVehicleRequest = req.body;
+
+  const { userId } = req.user;
 
   const newVehicle = await createVehicleService({
     name,
@@ -23,8 +24,8 @@ const createVehicleController = async (req: Request, res: Response) => {
     km,
     type,
     is_active,
-    user_mokado,
     image,
+    userId,
   });
 
   return res.status(201).json(newVehicle);

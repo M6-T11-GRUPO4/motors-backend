@@ -8,7 +8,7 @@ const deleteVehicleService = async (id: string) => {
     throw new AppError(400, "Veículo não encontrado");
   }
 
-  const deleteVehicle = await prisma.vehicle.delete({
+  await prisma.vehicle.delete({
     where: {
       id: id,
     },

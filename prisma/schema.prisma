@@ -11,16 +11,18 @@ datasource db {
 }
 
 model Vehicle {
-  id          String  @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
   description String
-  price       Decimal @db.Money
+  price       Decimal   @db.Money
   year        Int
   km          Int
   type        String
-  is_active   Boolean @default(true)
-  user_mokado String?
+  is_active   Boolean   @default(true)
   image       Image[]
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments    Comment[]
 }
 
 model Image {
@@ -28,4 +30,44 @@ model Image {
   url       String
   vehicleId String
   vehicle   Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                   String    @id @default(uuid())
+  name                 String
+  email                String    @unique
+  password             String
+  passwordResetToken   String?
+  passwordResetExpires DateTime?
+  cpf                  String    @unique
+  birthdate            DateTime  @db.Date
+  cellphone            String
+  description          String
+  is_seller            Boolean   @default(false)
+  is_active            Boolean   @default(true)
+  vehicles             Vehicle[]
+  comments             Comment[]
+  address              Address?
+}
+  
+model Address {
+  id         String @id @default(uuid())
+  cep        String
+  state      String
+  city       String
+  street     String
+  number     String
+  complement String?
+  userId     String @unique
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  comment   String
+  date      DateTime @default(now()) @db.Date
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  vehicleId String
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 }

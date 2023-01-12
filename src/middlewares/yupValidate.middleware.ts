@@ -7,7 +7,7 @@ const yupValidateMiddleware =
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = req.body;
-      await schema.validate(data, { abortEarly: false });
+      await schema.validate(data, { abortEarly: false, stripUnknown: true });
       next();
     } catch (error: any) {
       throw new AppError(400, error.errors);
