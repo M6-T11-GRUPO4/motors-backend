@@ -5,6 +5,14 @@ const listCommentsByVehicleService = async (vehicleId: string) => {
     where: {
       vehicleId,
     },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
   });
 
   return comments.reverse();
