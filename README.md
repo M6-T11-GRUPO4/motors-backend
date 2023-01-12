@@ -164,7 +164,7 @@ Aguarde o processamento e sua aplicação já estará disponível para uso em (c
 O consumo pode ser feito tanto pelo deploy do frontend (links logo abaixo), pelo Insonmia e pelo clone do repositório do frontend.
 
 - [Deploy](https://motors-shop-brunotiberio.vercel.app/)
-- [Workspace do Insomnia](coloque o nome do workspace do insomnia aqui e o arquivo na raiz)
+- [Workspace do Insomnia](motors-insonmia-versao-final.json)
 - [Repositório frontend](https://github.com/M6-T11-GRUPO4/motors-frontend)
 
 É possível acessar à documentação completa para poder utilizar a API.
@@ -180,7 +180,7 @@ Interfaces e Models desenvolvidas: (adicionar mais até o fim do projeto)
 - User (CRUD completo)
 - Address (CRUD completo)
 - Comments (CRUD completo)
-- 
+  
 ---
 
 ## 5. Histórico de desenvolvimento
